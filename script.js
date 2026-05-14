@@ -46,8 +46,14 @@ const menus = [
     nama: "Kedai Sotoku",
     folder: "kedai-sotoku",
     jumlah: 1
+  },  
+
+  {
+    nama: "Warung Bu Lastri",
+    folder: "wrlastri",
+    jumlah: 1
   }  
-             
+                                 
 ];
 
 const menuList =
@@ -110,6 +116,32 @@ search.addEventListener("input", () => {
   renderMenu(filtered);
 
 });
+
+function updateDateTime(){
+
+  const now = new Date();
+
+  document.getElementById("liveClock")
+  .textContent =
+  now.toLocaleTimeString("id-ID", {
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+
+  document.getElementById("liveDate")
+  .textContent =
+  now.toLocaleDateString("id-ID", {
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime,1000);});
 
 function updateDateTime(){
 
