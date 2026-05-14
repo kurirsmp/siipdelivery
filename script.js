@@ -1,110 +1,138 @@
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
-const closeBtn = lightbox.querySelector('.close-btn');
-const prevBtn = lightbox.querySelector('.prev');
-const nextBtn = lightbox.querySelector('.next');
-const orderAreaLightbox = lightbox.querySelector('.order-area-lightbox');
-const orderBtnLightbox = lightbox.querySelector('.order-area-lightbox .order-btn-lightbox');
-const textareaLightbox = lightbox.querySelector('.order-area-lightbox textarea');
+const menus = [
 
-let gallery = [];
-let currentIndex = 0;
-let currentWarung = "";
+  {
+    nama: "Basecamp Cafe",
+    folder: "basecamp-cafe",
+    jumlah: 1
+  },
 
-document.querySelectorAll('.menu-item img').forEach(img => {
-    img.addEventListener('click', () => {
-        const menuItem = img.closest('.menu-item');
-        currentWarung = menuItem.querySelector('.menu-title').textContent;
-        orderBtnLightbox.dataset.warung = currentWarung;
+  {
+    nama: "Warung Tengah Sawah",
+    folder: "wts",
+    jumlah: 2
+  },
 
-        // Ambil URL gambar pertama dari tag <img>
-        const gambarUtama = img.src;
+  {
+    nama: "Dapur Laila",
+    folder: "dapur-laila",
+    jumlah: 5
+  },
+  
+  {
+    nama: "Penyetan Melita",
+    folder: "penyetan-melita",
+    jumlah: 2
+  },
+  
+  {
+    nama: "77 Jeruk peras & Alpukat kocok",
+    folder: "77",
+    jumlah: 1
+  },
+  
+  {
+    nama: "Rujak Alisha",
+    folder: "rujak-alisha",
+    jumlah: 1
+  },  
 
-        // Ambil URL gambar-gambar tambahan dari atribut data-gambar
-        const gambarTambahan = menuItem.dataset.gambar;
+  {
+    nama: "Lalapan Sambel Ijo 2R",
+    folder: "lalapansambelijo2r",
+    jumlah: 1
+  },  
 
-        // Buat array gallery
-        gallery = [gambarUtama]; // Masukkan gambar utama terlebih dahulu
+  {
+    nama: "Kedai Sotoku",
+    folder: "kedai-sotoku",
+    jumlah: 1
+  }  
+             
+];
 
-        // Jika ada gambar tambahan, tambahkan ke array
-        if (gambarTambahan) {
-            const arrGambarTambahan = gambarTambahan.split(','); // Split berdasarkan koma
-            gallery = gallery.concat(arrGambarTambahan); // Gabungkan array
-        }
+const menuList =
+document.getElementById("menuList");
 
-        currentIndex = 0; // Selalu mulai dari gambar pertama
-        showImage();
+const search =
+document.getElementById("search");
 
-        orderAreaLightbox.style.display = 'block';
-        lightbox.style.display = 'flex';
-    });
-});
+function renderMenu(data){
 
-function showImage() {
-    lightboxImg.src = gallery[currentIndex];
+  menuList.innerHTML = "";
+
+  data.forEach(menu => {
+
+    const article =
+    document.createElement("article");
+
+    article.className = "menu-item";
+
+    article.innerHTML = `
+      <img
+        src="./menu/${menu.folder}/cover.jpg"
+        alt="${menu.nama}"
+        loading="lazy"
+      >
+
+      <h2 class="menu-title">
+        ${menu.nama}
+      </h2>
+    `;
+
+    article.onclick = () => {
+
+      window.location.href =
+      `detail.html?menu=${menu.folder}`;
+
+    };
+
+    menuList.appendChild(article);
+
+  });
+
 }
 
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
-    showImage();
+renderMenu(menus);
+
+search.addEventListener("input", () => {
+
+  const keyword =
+  search.value.toLowerCase();
+
+  const filtered = menus.filter(menu => {
+
+    return menu.nama
+    .toLowerCase()
+    .includes(keyword);
+
+  });
+
+  renderMenu(filtered);
+
 });
 
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % gallery.length;
-    showImage();
-});
+function updateDateTime(){
 
-closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    orderAreaLightbox.style.display = 'none';
-    textareaLightbox.value = "";
-});
+  const now = new Date();
 
-lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-        orderAreaLightbox.style.display = 'none';
-        textareaLightbox.value = "";
-    }
-});
+  document.getElementById("liveClock")
+  .textContent =
+  now.toLocaleTimeString("id-ID", {
+    hour:"2-digit",
+    minute:"2-digit"
+  });
 
-let startX = 0;
-let endX = 0;
+  document.getElementById("liveDate")
+  .textContent =
+  now.toLocaleDateString("id-ID", {
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
 
-lightboxImg.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-});
+}
 
-lightboxImg.addEventListener('touchend', e => {
-    endX = e.changedTouches[0].clientX;
-    let diff = endX - startX;
-    if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-            currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
-        } else {
-            currentIndex = (currentIndex + 1) % gallery.length;
-        }
-        showImage();
-    }
-});
+updateDateTime();
 
-orderBtnLightbox.addEventListener('click', () => {
-    const warung = orderBtnLightbox.dataset.warung;
-    const isiPesan = textareaLightbox.value.trim();
-
-    if (!isiPesan) {
-        textareaLightbox.focus();
-        alert("Tulis pesanan Anda!"); // Pesan error yang lebih jelas
-        return;
-    }
-
-    const text = `Halo SIIP DELIVERY, saya mau pesan dari ${warung}:\n${isiPesan}`;
-    const waURL = `https://wa.me/628990216387?text=${encodeURIComponent(text)}`;
-    window.open(waURL, '_blank');
-
-    textareaLightbox.value = "";
-    orderBtnLightbox.textContent = "Pesanan Dikirim!"; // Feedback sukses
-    setTimeout(() => {
-        orderBtnLightbox.textContent = "Pesan"; // Kembalikan teks tombol setelah beberapa detik
-    }, 3000);
-});
+setInterval(updateDateTime,1000);
