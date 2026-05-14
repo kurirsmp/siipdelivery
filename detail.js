@@ -46,8 +46,14 @@ const menus = [
     nama: "Kedai Sotoku",
     folder: "kedai-sotoku",
     jumlah: 1
+  },  
+
+  {
+    nama: "Warung Bu Lastri",
+    folder: "wrlastri",
+    jumlah: 1
   }  
-                  
+                    
 ];
 
 const params =
