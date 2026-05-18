@@ -122,7 +122,7 @@ const menus = [
       
   {
     nama: "Arina Cafe & Resto",
-    folder: "ayammerah",
+    folder: "arina",
     jumlah: 21
   } 
                     
