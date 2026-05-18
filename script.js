@@ -116,7 +116,7 @@ const menus = [
    
   {
     nama: "Ayam bumbu Merah Bu Har",
-    folder: "ayammerah",
+    folder: "arina",
     jumlah: 1
   },
         
