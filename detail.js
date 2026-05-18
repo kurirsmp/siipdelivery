@@ -124,8 +124,13 @@ const menus = [
     nama: "Arina Cafe & Resto",
     folder: "arina",
     jumlah: 21
-  } 
-                    
+  },
+  
+  {
+    nama: "Mie Gacoan",
+    folder: "gacoan",
+    jumlah: 1
+  }                                  
 
 ];
 
