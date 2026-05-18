@@ -116,13 +116,13 @@ const menus = [
    
   {
     nama: "Ayam bumbu Merah Bu Har",
-    folder: "arina",
+    folder: "ayammerah",
     jumlah: 1
   },
         
   {
     nama: "Arina Cafe & Resto",
-    folder: "ayammerah",
+    folder: "arina",
     jumlah: 21
   }                     ,     
 
