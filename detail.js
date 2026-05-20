@@ -130,8 +130,14 @@ const menus = [
     nama: "Mie Gacoan",
     folder: "gacoan",
     jumlah: 1
-  }                                  
-
+  },                                  
+  
+  {
+    nama: "Dapur Umma",
+    folder: "dapurumma",
+    jumlah: 1
+  }
+  
 ];
 
 const params =
