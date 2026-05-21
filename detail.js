@@ -136,7 +136,14 @@ const menus = [
     nama: "Dapur Umma",
     folder: "dapurumma",
     jumlah: 1
-  }
+  },
+     
+  {
+    nama: "Dapur Sinsin",
+    folder: "dapursinsin",
+    jumlah: 1
+  } 
+           
   
 ];
 
