@@ -190,7 +190,15 @@ const menus = [
     jumlah: 1,
     buka: "09:00",
     tutup: "17:00"
-  } 
+  },
+
+  {
+    nama: "Arabian Food & Drink",
+    folder: "arabianfnd",
+    jumlah: 1,
+    buka: "15:00",
+    tutup: "21:00"
+  }  
 ];
 
 const menuList =
