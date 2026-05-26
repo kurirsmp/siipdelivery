@@ -1,0 +1,171 @@
+:root{
+  --bg:#111827;
+  --card:#1e293b;
+  --accent:#10b981;
+  --text:#f3f4f6;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:sans-serif;
+}
+
+.top-info{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 12px;
+  background:#0f172a;
+  font-size:.8rem;
+}
+
+#liveClock{
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.running-text-container{
+  overflow:hidden;
+  white-space:nowrap;
+  padding:6px 10px;
+  background:#1f2937;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.running-text{
+  display:inline-block;
+  animation:marquee 12s linear infinite;
+  font-size:.9rem;
+  font-weight:600;
+}
+
+@keyframes marquee{
+  from{
+    transform:translateX(100%);
+  }
+
+  to{
+    transform:translateX(-100%);
+  }
+}
+
+.toolbar{
+  padding:8px 10px;
+}
+
+.toolbar input{
+  width:100%;
+  padding:10px 12px;
+  border:none;
+  border-radius:10px;
+  font-size:.9rem;
+}
+
+.menu-list{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(150px,1fr));
+
+  gap:14px;
+  padding:14px;
+}
+
+.menu-item{
+  position:relative;
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.menu-item img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+
+.menu-title{
+  padding:10px;
+  text-align:center;
+  font-size:1rem;
+}
+
+.detail-page{
+  padding:20px;
+}
+
+.back-link{
+  color:white;
+  text-decoration:none;
+}
+
+.gallery-info{
+  display:flex;
+  justify-content:space-between;
+  margin:18px 0;
+}
+
+.gallery{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.gallery img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px;
+  background:#000;
+}
+
+.order-area-detail{
+  margin-top:24px;
+}
+
+textarea{
+  width:100%;
+  min-height:90px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.status-buka,
+.status-tutup{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:10px;
+  font-weight:700;
+  padding:4px 8px;
+  border-radius:999px;
+  color:white;
+  z-index:2;
+  backdrop-filter:blur(4px);
+}
+
+.status-buka{
+  background:rgba(34,197,94,.9);
+}
+
+.status-tutup{
+  background:rgba(239,68,68,.9);
+}
