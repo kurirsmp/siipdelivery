@@ -68,8 +68,8 @@ const menus = [
     nama: "Warung Bu Lastri",
     folder: "wrlastri",
     jumlah: 1,
-    buka: "07:00",
-    tutup: "14:00"
+    buka: "06:00",
+    tutup: "21:00"
   },  
 
   {
